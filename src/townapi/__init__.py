@@ -21,7 +21,7 @@ def init_access_token():
     ret = None
     # request request_token
     api = TownApi()
-    key, secret = api.get_oauth_request_token("oob")
+    key, secret = api.post_oauth_request_token("oob")
     url = "%s?oauth_token=%s" % (AUTHORIZE_URL, key)
     print "다음 URL을 방문해서 PIN을 발급받으세요.\n%s" % url
     
@@ -94,9 +94,9 @@ class TownApi(ClientBase):
         
         return self._parse_json_response(response)
 
-    def get_oauth_request_token(self, callback):
+    def post_oauth_request_token(self, callback):
         self.set_callback(callback)
-        response = self.request(REQUEST_TOKEN_URL, "GET")
+        response = self.request(REQUEST_TOKEN_URL, "POST")
         self.callback = None
         return self._parse_token_response(response)
     

@@ -26,8 +26,7 @@ class TestTownApi(unittest.TestCase):
         self.assertFalse(u'박종필' in names)
         
         # 15학번 검색! 2015년 이전까지는 없을테니, Exception.
-        q = "15"
-        self.assertRaises(Exception, self.api.get_users_search, (q))
+        self.assertEqual(self.api.get_users_search('15'), [])
         
     def test_get_boards_lookup(self):
         board_id = "board_freeboard,board_alumni99,photo_alumni99"
@@ -83,8 +82,8 @@ class TestTownApi(unittest.TestCase):
         self.assertEqual(comment['content'], message)
         
 if __name__ == '__main__':
-    access_token = ('28767d0e02cf46d69eefb6e2a8b550f9',
-                    'a780c01643a1456bbebdb797b22ebcb3')
+    access_token = ('54d82b242a7a488485110b20667aad51', 
+                    '55cf4fda7f77407f9b168c87sc6008f32')
     username = check_access_token(*access_token)
     if not username:
         access_token = init_access_token()
