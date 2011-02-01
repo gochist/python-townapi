@@ -33,7 +33,7 @@ class ClientBase(oauth2.Client):
             if self.callback: 
                 parameters['oauth_callback'] = self.callback
         else:
-            parameters = dict(parse_qsl(urlparse(uri).query))
+            parameters = {}
             if self.callback: 
                 parameters['oauth_callback'] = self.callback
 

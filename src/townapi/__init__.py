@@ -142,5 +142,3 @@ class TownApi(ClientBase):
         params = {'message': message}
         return self._post(uri, params)
 
-        
-
